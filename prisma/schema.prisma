@@ -1,0 +1,34 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Customer {
+  customer_id    Int    @id @default(autoincrement())
+  first_name     String
+  last_name      String
+  age            Int
+  phone_number   String
+  monthly_salary Int
+  approved_limit Int
+  current_debt   Int  @default(0)
+  loans          Loan[]
+}
+
+model Loan {
+  loan_id           Int      @id @default(autoincrement())
+  loan_amount       Float
+  amount_pay        Float    @default(0)
+  tenure            Int
+  interest_rate     Float
+  emi               Int
+  EMIs_paid_on_time Int
+  date_of_approval  String
+  end_Date          String
+  customer          Customer @relation(fields: [customer_id], references: [customer_id], onUpdate: Cascade, onDelete: Cascade)
+  customer_id       Int
+}
