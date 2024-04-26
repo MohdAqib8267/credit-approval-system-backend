@@ -16,7 +16,6 @@ model Customer {
   monthly_salary Int
   approved_limit Int
   current_debt   Int  @default(0)
-  loans          Loan[]
 }
 
 model Loan {
@@ -29,6 +28,5 @@ model Loan {
   EMIs_paid_on_time Int
   date_of_approval  String
   end_Date          String
-  customer          Customer @relation(fields: [customer_id], references: [customer_id], onUpdate: Cascade, onDelete: Cascade)
   customer_id       Int
 }

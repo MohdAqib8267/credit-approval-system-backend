@@ -23,4 +23,6 @@ services:
       - MYSQL_DATABASE=${MYSQL_DATABASE:-credit_approval_system} # Default database name or set your custom name
       - MYSQL_USER=${MYSQL_USER:-root} # Default username or set your custom username
       - MYSQL_PASSWORD=${MYSQL_PASSWORD:-Aqib8267@@} # Default password or set your custom password
-      - MYSQL_PORT=${MYSQL_PORT:-3306} # Default port or set your custom port
+      - MYSQL_PORT=${MYSQL_PORT:-3306} 
+
+     
