@@ -3,8 +3,8 @@ version: '3.8'
 services:
   app:
     build:
-     context: .
-     dockerfile: dockerfile
+      context: .
+      dockerfile: dockerfile
     ports:
       - 8001:8080
     volumes:
@@ -14,15 +14,18 @@ services:
       - mysql
     environment:
       - PORT=8080
-      - DATABASE_URL=mysql://root:Aqib8267@@localhost:3306/credit_approval_system 
+      - DATABASE_URL=mysql://root:Aqib8267@@localhost:3306/credit_approval_system
+    stdin_open: true
+    tty: true
 
   mysql:
     image: mysql:8.0
+    restart: unless-stopped
+    env_file: ./.env
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root}
-      - MYSQL_DATABASE=${MYSQL_DATABASE:-credit_approval_system} # Default database name or set your custom name
-      - MYSQL_USER=${MYSQL_USER:-root} # Default username or set your custom username
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-Aqib8267@@} # Default password or set your custom password
-      - MYSQL_PORT=${MYSQL_PORT:-3306} 
-
-     
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-credit_approval_system}
+      - MYSQL_USER=${MYSQL_USER:-root}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-Aqib8267@@}
+      - MYSQL_PORT=${MYSQL_PORT:-3306}
+    
